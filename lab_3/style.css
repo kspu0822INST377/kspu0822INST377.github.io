@@ -169,11 +169,11 @@ main {
 }
 
 article, section {
-  flex: 3;
+  flex: 4;
 }
 
 aside {
-  flex: 2;
+  flex: 1;
   margin-left: 10px;
   padding: 1%;
 }
