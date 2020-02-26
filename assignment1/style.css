@@ -1,0 +1,12 @@
+header {
+    margin-bottom: 15px;
+    display: flex;
+    flex-flow: row wrap;
+    background-color: #B3736D;
+    color : white;
+}
+
+content{
+
+    background-color: #CFFFE4;
+}
