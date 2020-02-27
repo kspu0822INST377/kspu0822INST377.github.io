@@ -1,0 +1,33 @@
+header {
+    margin-bottom: 15px;
+    display: flex;
+    flex-flow: row wrap;
+    background-color: #B3736D;
+    color : white;
+    justify-content: space-between;
+    font-size: 100vw;
+    font-size: larger;
+}
+
+header img {
+    display: block;
+    height: auto;
+    max-height: 240px;
+    padding-top: 10px;
+}
+
+
+
+content{
+    background-color: #CFFFE4;
+}
+
+content image{
+
+}
+
+aside a{
+
+}
+
+
