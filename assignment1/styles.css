@@ -3,49 +3,90 @@ html {
     background-color: #CFFFE4;
   }
 
-header {
+.header {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row;
     background-color: #B3736D;
     color : white;
-    justify-content: space-between;
-    font-size: 2vw;
+    justify-content: space-around;
+    font-size: 1.5vw;
+
 }
 
-body{
-    min-width: 800px;
-}
 
-header img {
+
+.LOGO {
     display: block;
-    height: auto;
-    max-width: 10%;
+    max-width: 200px;
+    max-height: 200px;
 }
 
-#resume{
-
-}
-
-#content{
-    
-}
-
-#left-side{
-    max-width: fit-content;
-    font-size: 1vw;
-    flex-direction: column;
-}
-
-div img{
-    display: block;
-    height: auto;
-    max-height: 240px;
-    padding-top: 10px;
-}
-
-div p{
+.resume{
+    min-width: 600px;
     background-color: white;
     color : black;
+    font-size : 10px;
+    padding: 10px;
+    border: 1px #7FB396 dotted;
 }
 
+.content{
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
 
+.left-side{
+    max-width: 960px;
+    flex-wrap : wrap;
+    margin : 20px;
+    justify-content: space-between;
+}
+
+.image-container{
+    height: 240px;
+    max-width: auto;
+    border-radius: 4px;
+}
+
+.image-container img{
+    height : inherit;
+    border-radius: 4px;
+    border: 1px solid #7FB396
+}
+
+.caption {
+    background-color: white;
+    color : black;
+    font-size: 15px;
+    max-width: fit-content;
+    padding-bottom: 1px;
+    border: 1px #7FB396 dotted;
+    margin-top: 10px;
+}
+
+.caption p {
+    background-color: inherit;
+}
+
+li, ol, ul, p{
+    font-size: 15px;
+}
+
+@media screen and (max-width: 1000px)
+{
+    .container {
+        justify-content: center;
+    }
+
+    .left-side{
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction : row;
+        justify-content : space-evenly;
+        align-items : center;
+    }
+}
