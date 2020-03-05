@@ -8,7 +8,7 @@
   <body>
     <div class="container">
       <div class="wrapper">
-        <div class="header">Prof A's Demo Page</div>
+        <div class="header">Kangsheng Pu's Lab 4</div>
         <button class="button" onclick="clickMe()">
           Click me to make a change
         </button>
@@ -27,8 +27,18 @@
     <script>
       function clickMe() {
         const content = document.querySelector(".content");
+        const name = "Kangsheng Pu"
         content.innerHTML = "Hello world";
+        content.innerHTML += "<p>My name has " + (name.length-1) + " characters</p>";
+        content.innerHTML += "<p>the 3rd character in my first name is " + name.charAt(2).toUpperCase() + ".";
+        content.innerHTML += "\n";
+        content.innerHTML += name.substring(name.length-3);
+        const firstName = name.split(" ")[0];
+        const lastName = name.split(" ")[1];
+        const header = document.querySelector(".header");
+        header.innerHTML += " " + (firstName.length+lastName.length);
       }
     </script>
+    <script src="scripts/main.js"></script>
   </body>
 </html>
