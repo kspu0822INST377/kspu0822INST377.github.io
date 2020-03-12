@@ -15,6 +15,14 @@ function setCountry() {
         middle += "<li>" + "<b>" + countryList[step].code +"</b>" + " " + countryList[step].name + "</li>";
     }
     content.innerHTML = "<ol class = \"country\">" + middle + "<\ol>";
+
+    for(let step = 0; step < countries.length; step++)
+    {
+        if(!countryList.includes(countries[step]))
+        {
+            console.log(countries[step]);
+        }
+    }
   }
 
 
