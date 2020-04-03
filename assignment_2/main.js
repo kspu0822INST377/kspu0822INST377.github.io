@@ -6,10 +6,10 @@ btn.addEventListener('click', shadeChange);
 const overlay = document.querySelector('.overlay');
 
 /* Looping through images */
-for(var current = 1 ; current <= 5 ; ++current)
+for(var current = 0 ; current < 5 ; ++current)
 {
     var targetImage = document.createElement('img');
-    targetImage.setAttribute('src', 'images/pic' + current + '.jpg');
+    targetImage.setAttribute('src', 'images/pic' + (current+1) + '.jpg');
     thumbBar.appendChild(targetImage);
     
     targetImage.addEventListener('click', zoomImage);
