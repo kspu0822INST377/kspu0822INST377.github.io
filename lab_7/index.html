@@ -21,13 +21,51 @@
       <div class="wrapper">
         <div class="header">Frontend Libraries: Maps Lab</div>
         <div class="content">
-          When your lab is done, this should be replaced with a stylish map.
+          <div id="map1">
+          </div>
         </div>
         <div class="footer">Make some markers work!</div>
       </div>
     </div>
     <script>
-        /* Your lab code can go here, or in an external file you include */
+        var mymap = L.map('map1').setView([38.988265, -76.941577], 13);
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1Ijoia3NwdSIsImEiOiJjazQ0dG4zdjQwMmdkM25xdmh2ZWp3d2NtIn0.foB-jf7BA5R_piIFR2gVuA'
+        }).addTo(mymap);
+        var marker = L.marker([38.988265, -76.941577]).addTo(mymap);
+        marker.bindPopup("Hornbake Library").openPopup();
+        var popup = L.popup()
+        .setLatLng([38.988265, -76.941577])
+        .setContent("I am a standalone popup.")
+        .openOn(mymap);
+        var coordinates = [];
+        fetch('https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json')
+        .then((response) => 
+        {
+          return response.json();
+        })
+        .then((data) => 
+        {
+          for(eachVar in data)
+          {
+              coordinates[eachVar] = data[eachVar]["geocoded_column_1"];
+          }
+          coordinates = coordinates.filter(function(x) {
+            return x !== undefined;
+          });
+          console.log(coordinates);
+          var coordinatesQ8 = [];
+          for(count =0 ; count < 3; count++)
+          {
+            coordinatesQ8[count] = coordinates[count];
+          }
+          console.log(coordinatesQ8);
+        });
     </script>
   </body>
 </html>

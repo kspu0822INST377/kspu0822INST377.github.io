@@ -76,6 +76,11 @@ h3 {
   margin: 25px 50px;
 }
 
+#map1 { 
+  width: 640px;
+  height: 480px; 
+}
+
 .activate {
   background-color: #ffc477;
   -moz-border-radius: 11px;
@@ -101,3 +106,5 @@ h3 {
   position: relative;
   top: 1px;
 }
+
+
