@@ -28,22 +28,6 @@
       </div>
     </div>
     <script>
-        var mymap = L.map('map1').setView([38.988265, -76.941577], 13);
-        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox/streets-v11',
-        tileSize: 512,
-        zoomOffset: -1,
-        accessToken: 'pk.eyJ1Ijoia3NwdSIsImEiOiJjazQ0dG4zdjQwMmdkM25xdmh2ZWp3d2NtIn0.foB-jf7BA5R_piIFR2gVuA'
-        }).addTo(mymap);
-        var marker = L.marker([38.988265, -76.941577]).addTo(mymap);
-        marker.bindPopup("Hornbake Library").openPopup();
-        var popup = L.popup()
-        .setLatLng([38.988265, -76.941577])
-        .setContent("I am a standalone popup.")
-        .openOn(mymap);
-        var coordinates = [];
         fetch('https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json')
         .then((response) => 
         {
@@ -51,20 +35,36 @@
         })
         .then((data) => 
         {
+          var mymap = L.map('map1').setView([38.988265, -76.941577], 13);
+          L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+          attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          maxZoom: 18,
+          id: 'mapbox/streets-v11',
+          tileSize: 512,
+          zoomOffset: -1,
+          accessToken: 'pk.eyJ1Ijoia3NwdSIsImEiOiJjazQ0dG4zdjQwMmdkM25xdmh2ZWp3d2NtIn0.foB-jf7BA5R_piIFR2gVuA'
+          }).addTo(mymap);
+          var marker = L.marker([38.988265, -76.941577]).addTo(mymap);
+          marker.bindPopup("Hornbake Library").openPopup();
+          var coordinatesBlock = [];
+          var coordinates = [];
+          var count = 0;
           for(eachVar in data)
           {
-              coordinates[eachVar] = data[eachVar]["geocoded_column_1"];
+              coordinatesBlock[count] = data[eachVar]["geocoded_column_1"];
+              count++;
           }
-          coordinates = coordinates.filter(function(x) {
+          coordinatesBlock = coordinatesBlock.filter(function(x) {
             return x !== undefined;
           });
-          console.log(coordinates);
-          var coordinatesQ8 = [];
-          for(count =0 ; count < 3; count++)
+          for(count=0; count < coordinatesBlock.length; count ++)
           {
-            coordinatesQ8[count] = coordinates[count];
+            coordinates[count] = coordinatesBlock[count]["coordinates"];
           }
-          console.log(coordinatesQ8);
+          var markerOne = L.marker([coordinates[0][1], coordinates[0][0]]).addTo(mymap);
+          var markerTwo = L.marker([coordinates[1][1], coordinates[1][0]]).addTo(mymap);
+          var markerThree = L.marker([coordinates[2][1], coordinates[2][0]]).addTo(mymap);
+          console.log(coordinates);
         });
     </script>
   </body>
