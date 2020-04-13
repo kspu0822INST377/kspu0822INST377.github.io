@@ -55,11 +55,11 @@
             const formatData = Object.entries(data).map((map, i) =>
             {
               return{
-                y : map[1].length,
+                y : map[1].length/total*100,
                 label: map[0]
               };
-            return formatData;
             });
+            return formatData;
           })
             .then((data) => 
             {
