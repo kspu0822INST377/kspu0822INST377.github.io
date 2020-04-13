@@ -10,7 +10,7 @@
       <div class="wrapper">
         <div class="header">Frontend Libraries: Charts Lab</div>
         <div class="content">
-          When your lab is done, this should be replaced with a useful chart full of food data.
+          <div id="chartContainer" style="height: 1100px; width: 100%;"></div>
         </div>
         <div class="footer">Let's eat out in the future!</div>
       </div>
@@ -23,9 +23,57 @@
       })
       .then((data) => data.json()) // this is an "implicit return" - we're returning the results of the Fetch request to the next step.
         .then((data) => { // this is an explicit return. If I want my information to go further, I'll need to use the "return" keyword before the brackets close
-          console.log(data);
-          // return data; // <- this will pass the data to the next "then" statement when I'm ready.
+          const emptyData = data.filter((file) => file.geocoded_column_1);
+          const result = emptyData.map((map) => 
+          ({
+            category : map.category,
+            name : map.name,
+            latLong : map.geocoded_column_1.coordinates,
+          }));
+          return result;
         })
+        .then((data) => 
+        {
+          return data.reduce((result, current) =>
+          {
+            if (!result[current.category])
+            {
+              result[current.category] = [];
+            }
+            result[current.category].push(current);
+            return result;
+          }, {});
+        })
+          .then((data) => {
+            const formatData = Object.entries(data).map((map, i) =>
+            {
+              return{
+                y : (map[1].length/map.length) * 100,
+                label: map[0]
+              };
+              return formatData;
+            });
+          })
+            .then((data) => 
+            {
+              window.onload = function() {
+              var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                title: {
+                  text: "Let's find sth to eat"
+                },
+                data: [{
+                  type: "pie",
+                  startAngle: 240,
+                  yValueFormatString: "##0.00\"%\"",
+                  indexLabel: "{label} {y}",
+                  dataPoints: data
+                }]
+              });
+              chart.render();
+
+              }
+            })
     </script>
   </body>
 </html>
