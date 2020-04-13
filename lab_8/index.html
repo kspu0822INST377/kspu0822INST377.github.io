@@ -55,7 +55,7 @@
             const formatData = Object.entries(data).map((map, i) =>
             {
               return{
-                y : map[1].length*100/total,
+                y : map[1].length/total*100,
                 label: map[0]
               };
             });
@@ -63,6 +63,7 @@
           })
             .then((data) => 
             {
+              console.log(data);
               window.onload = function() {
               var chart = new CanvasJS.Chart("chartContainer", {
                 animationEnabled: true,
@@ -73,7 +74,7 @@
                   type: "pie",
                   startAngle: 240,
                   yValueFormatString: "##0.00\"%\"",
-                  indexLabel: "{label} {y}",
+                  indexLabel: "{y} {label}",
                   dataPoints: data
                 }]
               });
