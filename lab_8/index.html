@@ -18,7 +18,6 @@
     <script>
       fetch(' https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json') // replace this with the food safety data set
       .then((response) => {
-        console.log("response information", response);
         return response;
       })
       .then((data) => data.json()) // this is an "implicit return" - we're returning the results of the Fetch request to the next step.
@@ -51,7 +50,6 @@
             {
               total += eachdata.length;
             }
-            console.log(total);
             const formatData = Object.entries(data).map((map, i) =>
             {
               return{
