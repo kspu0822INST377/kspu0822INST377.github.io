@@ -55,7 +55,7 @@
             const formatData = Object.entries(data).map((map, i) =>
             {
               return{
-                y : map[1].length,
+                y : map[1].length*100/total,
                 label: map[0]
               };
             });
