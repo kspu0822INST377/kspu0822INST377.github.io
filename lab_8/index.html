@@ -45,17 +45,25 @@
           }, {});
         })
           .then((data) => {
+            console.log(data);
+            total =0;
+            for(eachdata in data)
+            {
+              total += eachdata.length;
+            }
+            console.log(total);
             const formatData = Object.entries(data).map((map, i) =>
             {
               return{
-                y : (map[1].length/map.length) * 100,
+                y : map[1].length,
                 label: map[0]
               };
-              return formatData;
+            return formatData;
             });
           })
             .then((data) => 
             {
+              console.log(data);
               window.onload = function() {
               var chart = new CanvasJS.Chart("chartContainer", {
                 animationEnabled: true,
