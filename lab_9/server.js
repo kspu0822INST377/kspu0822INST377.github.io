@@ -28,8 +28,13 @@ function processDataForFrontEnd(req, res) {
   // Note that at no point do you "return" anything from this function -
   // it instead handles returning data to your front end at line 34.
     fetch(baseURL)
-      .then((results) => results.json())
-      .then((data) => { // this is an explicit return. If I want my information to go further, I'll need to use the "return" keyword before the brackets close
+      .then((response) => response.json())
+      .then((response) => {
+        console.log("response information", response);
+        return response;
+      })
+      .then((data) => data.json()) // this is an "implicit return" - we're returning the results of the Fetch request to the next step.
+        .then((data) => { // this is an explicit return. If I want my information to go further, I'll need to use the "return" keyword before the brackets close
           const emptyData = data.filter((file) => file.geocoded_column_1);
           const result = emptyData.map((map) => 
           ({
@@ -53,12 +58,11 @@ function processDataForFrontEnd(req, res) {
         })
           .then((data) => {
             console.log(data);
-            let total =0;
+            let total = 0;
             for(eachdata in data)
             {
               total += eachdata.length;
             }
-            console.log(total);
             const formatData = Object.entries(data).map((map, i) =>
             {
               return{
@@ -72,6 +76,7 @@ function processDataForFrontEnd(req, res) {
         console.log(data);
         res.send({ data: data }); // here's where we return data to the front end
       })
+      
       .catch((err) => {
         console.log(err);
         res.redirect('/error');
@@ -84,4 +89,3 @@ function processDataForFrontEnd(req, res) {
 app.get('/api', (req, res) => {processDataForFrontEnd(req, res)});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
-
