@@ -28,13 +28,12 @@ function processDataForFrontEnd(req, res) {
   // Note that at no point do you "return" anything from this function -
   // it instead handles returning data to your front end at line 34.
     fetch(baseURL)
-      .then((response) => response.json())
-      .then((response) => {
-        console.log("response information", response);
-        return response;
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data);
+        res.send({ data: data }); // here's where we return data to the front end
       })
-      .then((data) => data.json()) // this is an "implicit return" - we're returning the results of the Fetch request to the next step.
-        .then((data) => { // this is an explicit return. If I want my information to go further, I'll need to use the "return" keyword before the brackets close
+      .then((data) => { // this is an explicit return. If I want my information to go further, I'll need to use the "return" keyword before the brackets close
           const emptyData = data.filter((file) => file.geocoded_column_1);
           const result = emptyData.map((map) => 
           ({
@@ -72,11 +71,6 @@ function processDataForFrontEnd(req, res) {
             });
             return formatData;
           })
-      .then((data) => {
-        console.log(data);
-        res.send({ data: data }); // here's where we return data to the front end
-      })
-      
       .catch((err) => {
         console.log(err);
         res.redirect('/error');
