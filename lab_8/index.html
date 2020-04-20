@@ -51,11 +51,10 @@
             {
               total += eachdata.length;
             }
-            console.log(total);
             const formatData = Object.entries(data).map((map, i) =>
             {
               return{
-                y : map[1].length/total*100,
+                y : map[1].length,
                 label: map[0]
               };
             });
@@ -64,7 +63,6 @@
             .then((data) => 
             {
               console.log(data);
-              window.onload = function() {
               var chart = new CanvasJS.Chart("chartContainer", {
                 animationEnabled: true,
                 title: {
@@ -79,8 +77,6 @@
                 }]
               });
               chart.render();
-
-              }
             })
     </script>
   </body>
