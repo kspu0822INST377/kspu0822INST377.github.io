@@ -53,7 +53,7 @@ function processDataForFrontEnd(req, res) {
         })
           .then((data) => {
             console.log(data);
-            total =0;
+            let total =0;
             for(eachdata in data)
             {
               total += eachdata.length;
@@ -84,3 +84,4 @@ function processDataForFrontEnd(req, res) {
 app.get('/api', (req, res) => {processDataForFrontEnd(req, res)});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
