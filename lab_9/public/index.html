@@ -17,8 +17,23 @@
   <script>
     fetch('/api') // Rather than fetching from PG County, we're going to fetch from our own server.
       .then(res => res.json())
-      .then(res => {
+      .then(data => {
         // Here's where your chart code should go.
+        console.log(data);
+        var chart = new CanvasJS.Chart("chartContainer", {
+          animationEnabled: true,
+          title: {
+            text: "Let's find sth to eat"
+          },
+          data: [{
+            type: "pie",
+            startAngle: 240,
+            yValueFormatString: "##0.00\"%\"",
+            indexLabel: "{y} {label}",
+            dataPoints: data
+          }]
+        });
+        chart.render();
       })
   </script>
 </body>
