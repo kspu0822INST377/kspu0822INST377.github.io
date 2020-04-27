@@ -45,6 +45,9 @@ function processDataForFrontEnd(req, res) {
 //
 app
   .route("/api")
+  .put('/user', function (req, res) {
+    res.send('Got a PUT request at /user')
+    })
   .get((req, res) => {
     // processDataForFrontEnd(req, res)
     (async () => {

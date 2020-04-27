@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "sample_server",
   "version": "1.0.0",
   "description": "A sample webserver to pull UMD.io data and push it to a local page",
@@ -20,6 +21,8 @@
     "@babel/core": "^7.9.0",
     "@babel/node": "^7.8.7",
     "@babel/preset-env": "^7.9.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
     "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-html": "^6.0.0",
