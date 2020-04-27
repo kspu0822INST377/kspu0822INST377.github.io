@@ -14,6 +14,9 @@
           <form class="targetForm" id="labForm">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" />
+            <br>
+            <label for="zip_code">ZIP code</label>
+            <input type="text" id="Zip code" name="zip_code" />
             <label for="interests">Interests</label>
             <textarea id="interests" name="interests" rows="5" cols="33">
                 Default text says what?
@@ -33,10 +36,7 @@
         const formToSend = new FormData(target);
 
         fetch("/api", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          method: "PUT",
           body: JSON.stringify(Object.fromEntries(formToSend)),
         })
           .then((data) => data.text()) // note: we didn't send JSON, so there's no JSON to get.

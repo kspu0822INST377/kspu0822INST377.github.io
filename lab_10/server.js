@@ -22,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
+
 function processDataForFrontEnd(req, res) {
   const baseURL = ""; // Enter the URL for the data you would like to retrieve here
 
@@ -66,7 +67,7 @@ app
       writeUser(req.body.name, dbSettings)
       .then((result) => {
         console.log(result);
-        res.send("your request was successful"); // simple mode
+        res.send("It successed. Great"); // simple mode
       })
       .catch((err) => {
         console.log(err);
