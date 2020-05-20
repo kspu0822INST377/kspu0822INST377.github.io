@@ -24,7 +24,7 @@ app.use(express.static("public"));
 
 
 function processDataForFrontEnd(req, res) {
-  const baseURL = ""; // Enter the URL for the data you would like to retrieve here
+  const baseURL = "/api"; // Enter the URL for the data you would like to retrieve here
 
   // Your Fetch API call starts here
   // Note that at no point do you "return" anything from this function -
@@ -46,9 +46,6 @@ function processDataForFrontEnd(req, res) {
 //
 app
   .route("/api")
-  .put('/user', function (req, res) {
-    res.send('Got a PUT request at /user')
-    })
   .get((req, res) => {
     // processDataForFrontEnd(req, res)
     (async () => {
@@ -57,6 +54,14 @@ app
       console.log("Expected result", result);
       res.json(result);
     })();
+  })
+  .put((req, res) => {
+    console.log("/api put request", req.body);
+    writeForm(req.body.name, req.body.zip, req.body.interests, dbSettings)
+    .then((table) => {
+      res.json({table, succesMsg: 'Your request is successful.'})
+      console.log(table);
+    })
   })
   .post((req, res) => {
     console.log("/api post request", req.body);
